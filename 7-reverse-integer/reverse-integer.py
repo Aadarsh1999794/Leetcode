@@ -1,19 +1,24 @@
 import math
 class Solution:
     def reverse(self, x: int) -> int:
-        MIN=-2147483648 #
-        MAX=2147483647
+        NEG=0
         rev=0
-        pos=abs(x)
-        while pos:
-            rem = pos%10
+        if x<0:
+            NEG=1
+            x=abs(x)        
+        while x:
+            rem = x%10
             rev=((rev*10)+rem)
-            pos=pos//10
-        if rev>math.pow(2,31) or rev<math.pow(2,-31):
-            return 0
-        if x>0:
-            rev=rev
-        else:
+            x=x//10
+        if NEG==1:
             rev=rev*(-1)
-        return rev
+            if rev<int(math.pow(-2,31)):
+                return 0
+            else:
+                return rev
+        else:
+            if rev>math.pow(2,31):
+                return 0
+            else:
+                return rev
         
