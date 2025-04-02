@@ -4,21 +4,16 @@ class Solution:
         NEG=0
         rev=0
         if x<0:
+            NEG=-1
+        else:
             NEG=1
-            x=abs(x)        
-        while x:
+        x=abs(x)
+        while x>0:
             rem = x%10
             rev=((rev*10)+rem)
             x=x//10
-        if NEG==1:
-            rev=rev*(-1)
-            if rev<int(math.pow(-2,31)):
-                return 0
-            else:
-                return rev
-        else:
-            if rev>math.pow(2,31):
-                return 0
-            else:
-                return rev
+        rev=NEG*rev
+        if rev>=(-2**31) and rev<=(2**31)-1:
+            return rev
+        return 0
         
